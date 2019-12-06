@@ -59,3 +59,74 @@ We also implemented a version with the gcc flag -O3, which indeed resulted in ~1
 
 ### Sources
 * http://gem5.org/
+
+
+## 2nd Lab
+
+### Stage one
+
+| MinorCPU Cache Info    | Value         |
+| ---------------------- | ------------- |
+| Cache Line Size        | 64 B          |
+| L1 D Size              | 64 KB         |
+| L1 D Associativity     | 2-way         |
+| L1 I Size              | 32 KB         |
+| L1 I Associativity     | 2-way         |
+| L2 Size                | 2 MB          |
+| L2 Associativity       | 8-way         |
+
+#### SPEC CPU 2006 - Benchmark results
+
+| MinorCPU 1GHz            | Time (in ms) | CPI        | L1 D Cache Misses | L1 I Cache Misses | L2 Cache Misses |
+| ------------------------ |--------------| ---------- | ------------------| ------------------| ----------------|
+| 401.bzip2                | 161.025      | 1.610247   | 0.014675          | 0.000077          | 0.282157        |
+| 429.mcf                  | 127.942      | 1.279422   | 0.002108          | 0.023627          | 0.055046        |
+| 456.hmmer                | 118.530      | 1.185304   | 0.001629          | 0.000221          | 0.077747        |
+| 458.sjeng                | 704.056      | 7.040561   | 0.121831          | 0.000020          | 0.999972        |
+| 470.lbm                  | 262.327      | 2.623265   | 0.060971          | 0.000094          | 0.999944        |
+
+
+| MinorCPU 2GHz            | Time (in ms) | CPI        | L1 D Cache Misses | L1 I Cache Misses | L2 Cache Misses |
+| ------------------------ |--------------| ---------- | ------------------| ------------------| ----------------|
+| 401.bzip2                | 83.982       | 1.679650   | 0.014798          | 0.000077          | 0.282163        |
+| 429.mcf                  | 64.955       | 1.299095   | 0.002108          | 0.023612          | 0.055046        |
+| 456.hmmer                | 59.396       | 1.187917   | 0.001637          | 0.000221          | 0.077760        |
+| 458.sjeng                | 513.528      | 10.270554  | 0.121831          | 0.000020          | 0.999972        |
+| 470.lbm                  | 174.671      | 3.493415   | 0.060972          | 0.000094          | 0.999944        |
+
+#### System Domain and CPU-Cluster Clock Differences
+The system domain clock sets the system uncore clock including the memory controller, the memory bus and the DVFS (Dynamic voltage and frequency scaling) handler, whereas the CPU-Cluster clock sets the cpu core clock including its computational units, the L1 Data and Instruction cache, the L2 cache and the walk cache. Should we add another cpu, its clock would be the CPU-Cluster clock.
+
+#### Execution time scaling with clock rate
+The execution time scales well with clock rate increase (almost 100% faster execution with double clock rate) only when the total cache miss rate is low. When an L2 cache miss occurs, the penalty of accessing the RAM through the memory controller and the memory bus has to be paid. This penalty is not affected by the CPU-Cluster clock rate and only depends on the System Domain clock and the RAM clock. This is made clear by our benchmark results above. The SPEC 401, 429 and 456 benchmarks scale almost perfectly, while the SPEC 458 and 470 benchmarks scale badly due to the L2 Cache Miss rate being almost 100%. We can also observe a CPI increase in cases when the scaling is bad. Since the cpu clock rate increases and the penalty time remains the same, there are more cycles wasted waiting for data to arrive from the memory.
+
+
+### Stage two
+All of the comparisons below are relative to the memory configuration of the first stage.
+
+* #### 401.bzip2 (integer)
+  We tried many different topologies, but none resulted in either better performance or less complexity.
+
+* #### 429.mcf (integer)
+  A 2.3% L1 instruction cache miss rate was noticed, so we doubled either its size or its associativity, both noticeably reducing the CPI and execution time to ~1.16 and ~57.8ms. We also implemented both of these changes, but no furthrer improvement was observed whatsoever.
+A 5.5% L2 cache miss rate was noticed, but since we couldn't improve it, we settled up to reducing its size and associativity by 4 times and still getting the same performance.
+Conclusion: This benchmark was instruction intensive.
+
+* #### 456.hmmer (integer)
+  We halved the L1 Data cache size since we noticed an almost 0% miss rate and managed to get the same performance. 
+Regarding the L2 cache, we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+
+* #### 458.sjeng (integer)
+  The only parameter change that made a difference was the cache line size. Doubling it resulted in almost half the CPI and  execution time. Also, quadrupling it resulted in a minor impact to the CPI and execution time.
+We tried decreasing the L1 instruction cache size and/or associativity ending up with strange results.
+Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+Conclusion: This benchmark was designed to always miss in the L2 cache level.
+
+* #### 470.lbm (float)
+  The only parameter change that made a difference was the cache line size. Doubling it resulted in a noticeable improvement of the CPI and  execution time. Also, quadrupling it made a less significant beneficial impact to the CPI and execution time.
+Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+Conclusion: This benchmark was designed to always miss in the L2 cache level.
+
+### Sources
+* http://gem5.org/
+* https://www.spec.org/cpu2006/Docs/
