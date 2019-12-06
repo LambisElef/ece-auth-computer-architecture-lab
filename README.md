@@ -118,7 +118,6 @@ Regarding the L2 cache, we ended up reducing its size and associativity by 4 tim
 
 * #### 458.sjeng (integer)
   The only parameter change that made a difference was the cache line size. Doubling it resulted in almost half the CPI and  execution time. Also, quadrupling it resulted in a minor impact to the CPI and execution time.
-We tried decreasing the L1 instruction cache size and/or associativity ending up with strange results.
 Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
 Conclusion: This benchmark was designed to always miss in the L2 cache level.
 
