@@ -117,8 +117,7 @@ Conclusion: This benchmark was instruction intensive.
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/429.mcf_l2.png)
 
 * #### 456.hmmer (integer)
-  We halved the L1 Data cache size since we noticed an almost 0% miss rate and managed to get the same performance. 
-  Regarding the L2 cache, we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+  We halved the L1 Data cache size since we noticed an almost 0% miss rate and managed to get the same performance. Regarding the L2 cache, we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/456.hmmer_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/456.hmmer_l2.png)
 
