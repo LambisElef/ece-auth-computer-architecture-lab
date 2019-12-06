@@ -131,6 +131,11 @@ All of the comparisons below are relative to the memory configuration of the fir
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_l2.png)
 ![Line](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_line.png)
 
+### Stage three
+
+#### Cost Function
+We came up with this cost function: __CPI * {2*(n1/16kB) + 4*(k1) + 2*(n2/128kB) + 2*(k2) + 10*(c/64B)}__ where n1 represents the L1 Cache Size, k1 the L1 Cache Associativity, n2 the L2 Cache Size, k2 the L2 Cache Associativity and c the Cache Line Size.
+
 ### Sources
 * http://gem5.org/
 * https://www.spec.org/cpu2006/Docs/
