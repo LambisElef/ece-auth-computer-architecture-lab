@@ -123,14 +123,17 @@ Conclusion: This benchmark was instruction intensive.
 
 * #### 458.sjeng (integer)
   The only parameter change that made a difference was the cache line size. Doubling it resulted in almost half the CPI and  execution time. Also, quadrupling it resulted in a minor impact to the CPI and execution time.
-Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed. Conclusion: This benchmark was designed to always miss in the L2 cache level.
+Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+Conclusion: This benchmark was designed to always miss in the L2 cache level.
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_l2.png)
 ![Line](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_line.png)
 
 * #### 470.lbm (float)
   The only parameter change that made a difference was the cache line size. Doubling it resulted in a noticeable improvement of the CPI and  execution time. Also, quadrupling it made a less significant beneficial impact to the CPI and execution time.
-Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed. Conclusion: This benchmark was designed to always miss in the L2 cache level.
+Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+Conclusion: This benchmark was designed to always miss in the L2 cache level.
+&nbsp;
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_l2.png)
 ![Line](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_line.png)
