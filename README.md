@@ -98,42 +98,35 @@ We also implemented a version with the gcc flag -O3, which indeed resulted in ~1
 The system domain clock sets the system uncore clock including the memory controller, the memory bus and the DVFS (Dynamic voltage and frequency scaling) handler, whereas the CPU-Cluster clock sets the cpu core clock including its computational units, the L1 Data and Instruction cache, the L2 cache and the walk cache. Should we add another cpu, its clock would be the CPU-Cluster clock.
 
 #### Execution time scaling with clock rate
-The execution time scales well with clock rate increase (almost 100% faster execution with double clock rate) only when the total cache miss rate is low. When an L2 cache miss occurs, the penalty of accessing the RAM through the memory controller and the memory bus has to be paid. This penalty is not affected by the CPU-Cluster clock rate and only depends on the System Domain clock and the RAM clock. This is made clear by our benchmark results above. The SPEC 401, 429 and 456 benchmarks scale almost perfectly, while the SPEC 458 and 470 benchmarks scale badly due to the L2 Cache Miss rate being almost 100%. We can also observe a CPI increase in cases when the scaling is bad. Since the cpu clock rate increases and the penalty time remains the same, there are more cycles wasted waiting for data to arrive from the memory.
+The execution time scales well with clock rate increase (almost 100% faster execution with double clock rate) only when the total cache miss rate is low. When an L2 cache miss occurs, the penalty of accessing the RAM through the memory controller and the memory bus has to be paid. This penalty is not affected by the CPU-Cluster clock rate and only depends on the System Domain clock and the RAM clock. This is made clear by our benchmark results above. The SPEC 401, 429 and 456 benchmarks scale almost perfectly, while the SPEC 458 and 470 benchmarks scale badly due to the L2 Cache Miss rate being almost 100%. We can also observe a CPI increase in cases when the scaling is bad. Since the cpu clock rate increases and the penalty time remains the same, there are more cycles wasted waiting for data to arrive from the memory.  
 
 
 ### Stage two
 All of the comparisons below are relative to the memory configuration of the first stage.
 
 * #### 401.bzip2 (integer)
-  We tried many different topologies, but none resulted in either better performance or less complexity.
+  We tried many different topologies, but none resulted in either better performance or less complexity.  
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/401.bzip2_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/401.bzip2_l2.png)
 
 * #### 429.mcf (integer)
-  A 2.3% L1 instruction cache miss rate was noticed, so we doubled either its size or its associativity, both noticeably reducing the CPI and execution time to ~1.16 and ~57.8ms. We also implemented both of these changes, but no furthrer improvement was observed whatsoever.
-A 5.5% L2 cache miss rate was noticed, but since we couldn't improve it, we settled up to reducing its size and associativity by 4 times and still getting the same performance.
-Conclusion: This benchmark was instruction intensive.
+  A 2.3% L1 instruction cache miss rate was noticed, so we doubled either its size or its associativity, both noticeably reducing the CPI and execution time to ~1.16 and ~57.8ms. We also implemented both of these changes, but no furthrer improvement was observed whatsoever.  A 5.5% L2 cache miss rate was noticed, but since we couldn't improve it, we settled up to reducing its size and associativity by 4 times and still getting the same performance.  Conclusion: This benchmark was instruction intensive.  
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/429.mcf_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/429.mcf_l2.png)
 
 * #### 456.hmmer (integer)
-  We halved the L1 Data cache size since we noticed an almost 0% miss rate and managed to get the same performance. Regarding the L2 cache, we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+  We halved the L1 Data cache size since we noticed an almost 0% miss rate and managed to get the same performance. Regarding the L2 cache, we ended up reducing its size and associativity by 4 times leaving the performance unharmed.  
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/456.hmmer_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/456.hmmer_l2.png)
 
 * #### 458.sjeng (integer)
-  The only parameter change that made a difference was the cache line size. Doubling it resulted in almost half the CPI and  execution time. Also, quadrupling it resulted in a minor impact to the CPI and execution time.
-Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
-Conclusion: This benchmark was designed to always miss in the L2 cache level.
+  The only parameter change that made a difference was the cache line size. Doubling it resulted in almost half the CPI and  execution time. Also, quadrupling it resulted in a minor impact to the CPI and execution time.  Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.  Conclusion: This benchmark was designed to always miss in the L2 cache level.  
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_l2.png)
 ![Line](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_line.png)
 
 * #### 470.lbm (float)
-  The only parameter change that made a difference was the cache line size. Doubling it resulted in a noticeable improvement of the CPI and  execution time. Also, quadrupling it made a less significant beneficial impact to the CPI and execution time.
-Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
-Conclusion: This benchmark was designed to always miss in the L2 cache level.
-&nbsp;
+  The only parameter change that made a difference was the cache line size. Doubling it resulted in a noticeable improvement of the CPI and  execution time. Also, quadrupling it made a less significant beneficial impact to the CPI and execution time.  Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.  Conclusion: This benchmark was designed to always miss in the L2 cache level.  
 ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_l1.png)
 ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_l2.png)
 ![Line](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_line.png)
