@@ -106,25 +106,37 @@ All of the comparisons below are relative to the memory configuration of the fir
 
 * #### 401.bzip2 (integer)
   We tried many different topologies, but none resulted in either better performance or less complexity.
+  ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/401.bzip2_l1.png)
+  ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/401.bzip2_l2.png)
 
 * #### 429.mcf (integer)
   A 2.3% L1 instruction cache miss rate was noticed, so we doubled either its size or its associativity, both noticeably reducing the CPI and execution time to ~1.16 and ~57.8ms. We also implemented both of these changes, but no furthrer improvement was observed whatsoever.
 A 5.5% L2 cache miss rate was noticed, but since we couldn't improve it, we settled up to reducing its size and associativity by 4 times and still getting the same performance.
 Conclusion: This benchmark was instruction intensive.
+  ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/429.mcf_l1.png)
+  ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/429.mcf_l2.png)
 
 * #### 456.hmmer (integer)
   We halved the L1 Data cache size since we noticed an almost 0% miss rate and managed to get the same performance. 
 Regarding the L2 cache, we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
+  ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/456.hmmer_l1.png)
+  ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/456.hmmer_l2.png)
 
 * #### 458.sjeng (integer)
   The only parameter change that made a difference was the cache line size. Doubling it resulted in almost half the CPI and  execution time. Also, quadrupling it resulted in a minor impact to the CPI and execution time.
 Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
 Conclusion: This benchmark was designed to always miss in the L2 cache level.
+  ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_l1.png)
+  ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_l2.png)
+  ![Line](/2nd_Lab_Data/stage_II_spec_results/charts/458.sjeng_line.png)
 
 * #### 470.lbm (float)
   The only parameter change that made a difference was the cache line size. Doubling it resulted in a noticeable improvement of the CPI and  execution time. Also, quadrupling it made a less significant beneficial impact to the CPI and execution time.
 Regarding the L2 cache, its miss rate could not be helped, so we ended up reducing its size and associativity by 4 times leaving the performance unharmed.
 Conclusion: This benchmark was designed to always miss in the L2 cache level.
+  ![L1](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_l1.png)
+  ![L2](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_l2.png)
+  ![Line](/2nd_Lab_Data/stage_II_spec_results/charts/470.lbm_line.png)
 
 ### Sources
 * http://gem5.org/
