@@ -3,7 +3,7 @@ Lab results for "Computer Architecture" AUTh course by students Eleftheriadis Ch
 
 ## 1st Lab
 
-#### Hello
+### Hello
 The results of the execution of the program are placed into the "hello_result" folder.
 
 | Table           | Value         | Location in starter_se.py                                   |
@@ -18,14 +18,14 @@ The results of the execution of the program are placed into the "hello_result" f
 
 More information about caches' size and associativity can be found in config.ini.
 
-#### In-order CPU Types
+### In-order CPU Types
 * #### MinorCPU
   Minor is an in-order processor model with a fixed pipeline but configurable data structures and execute behaviour. It is intended to be used to model processors with strict in-order execution behaviour and allows visualisation of an instruction's position in the pipeline through the MinorTrace/minorview.py format/tool. The intention is to provide a framework for micro-architecturally correlating the model with a particular, chosen processor with similar capabilities.
 
 * #### SimpleCPU
   The SimpleCPU is a purely functional, in-order model that is suited for cases where a detailed model is not necessary. This can include warm-up periods, client systems that are driving a host, or just testing to make sure a program works. It is now broken up into three classes, the BaseSimpleCPU, the AtomicSimpleCPU and the TimingSimpleCPU.
 
-#### Our benchmarks using qsort.c
+### Our benchmarks using qsort.c
 
 | MinorCPU + DDR4_2400_8x8 | Time (in ms) |
 | ------------------------ |--------------|
@@ -48,16 +48,16 @@ More information about caches' size and associativity can be found in config.ini
 | DDR4_2400_8x8        | 16.437        |
 | LPDDR3_1600_1x32     | 16.451        |
 
-#### Notes
+### Notes
 As expected, the execution time was cut in half when the frequency was doubled. What's more there was no noticeable difference regarding the execution time with different memory types, because our program wasn't memory intensive. The needed data was transfered to cache only once and there were no cache misses.  
 We also implemented a version with the gcc flag -O3, which indeed resulted in ~10% faster execution.
 
-#### Lab Assignment Review (in greek)
+### Lab Assignment Review (in greek)
 Θεωρούμε ότι το πρώτο εργαστήριο του μαθήματος πέτυχε το σκοπό του όπως επισημάνθηκε στις σημειώσεις του. Οι οδηγίες για την εγκατάσταση του Gem5 ήταν ακριβείς και λειτούργησαν όπως αναμενόταν στην τελευταία έκδοση 19.10 Ubuntu. Ιδιαίτερα βοηθητικό ήταν το κομμάτι με τις προτεραιότητες για τις διάφορες εκδόσεις του gcc που έχουμε πλέον εγκατεστημένες.  
 Όσον αφορά στη χρήση του Gem5, αρχικά είχαμε μπερδευτεί αρκετά γύρω από διάφορα πράγματα, το python script για την επιλογή του υλικού προσομοίωσης και τα flags του κάθε script, τη συχνότητα προσομοίωσης, τα πολλαπλά πεδία στα αρχεία stats και config και τον τρόπο με τον οποίο έπρεπε να βρούμε αυτά που μας ενδιέφεραν. Βέβαια, με λίγες ώρες παρατήρησης των αρχείων και χρήσης του documentation του προσομοιωτή καταφέραμε να καταλάβουμε τα ζητούμενα και είμαστε πλέον ικανοί να διαβάζουμε τα στατιστικά με σχετική ευκολία.  
 Τέλος, θα θέλαμε να είχαμε "παίξει" λίγο παραπάνω με το εκτελέσιμο πρόγραμμα, για παράδειγμα να το κάναμε περισσότερο memory intensive, ώστε οι διάφορες τοπολογίες μνήμης (τόσο τεχνολογία, όσο και κανάλια) να επηρέαζαν περισσότερο το χρόνο εκτέλεσης, ωστόσο λόγω λοιπών υποχρεώσεων ελπίζουμε να δοκιμάσουμε αργότερα.
 
-#### Sources
+### Sources
 * http://gem5.org/
 
 
@@ -156,12 +156,30 @@ We chose this function for the following reasons:
 #### Lab Assignment Review (in greek)
 Η δεύτερη εργασία μας φάνηκε αρκετά πιο απαιτητική από την πρώτη, ωστόσο μας βοήθησε να καταλάβουμε εις βάθος το σύστημα κρυφών μνημών και το ρόλο της κάθε παραμέτρου. Ειδικά το κομμάτι με την εξίσωση κόστους ήταν χρονοβόρο, αν και βοήθησε στην κατανόηση λεπτομερειών που δε χρειάστηκε να σκεφτούμε στο προηγούμενο κομμάτι. 
 
-#### Sources
+### Sources
 * http://gem5.org/
 * https://www.spec.org/cpu2006/Docs/
 * https://www.d.umn.edu/~gshute/arch/cache-addressing.xhtml
 * https://cseweb.ucsd.edu/classes/su07/cse141/cache-handout.pdf
 
+
 ## 3rd Lab
 
+### Stage one
 
+#### Answer 1
+Power dissipation in a circuit comes in two forms: dynamic and static. Dynamic power is primarily caused by current flow from the charging and discharging of parasitic capacitances. Dynamic power is proportional to these capacitances, the clocking frequency and the supply voltage.  
+Static power, on the other hand, is caused by leakage currents while gates are idle. Static leakage loss increases as process geometry decreases, but for a certain lithography supply voltage as well as temperature can also play a major role. Leakage power is now becoming proportional to dynamic power loss in 90nm and below.  
+Should two different programms run individually, only the dynamic power dissipation will be affected (no power gating is applied) and the one causing the most flip-flop state changes will result in higher dynamic power dissipation. Should power gating be applied, then leakage power could also be affected depending on which CPU parts will be used. Well, to be precise, since leakage power is also dependant on the operating temperature, when a program runs and increases the dynamic power dissipation, the operating temperature rises thus increasing the leakage power loss.  
+Time duration does not matter, since the consumption numbers McPAT generates refer to power (Watts), not power consumption (Watt hours).
+
+#### Answer 2
+Yes, there is a chance that processor B could be more energy efficient than processor A, since energy effiency is defined by both idle_power_consumption*idle_time + work_power_consumption*work_time.  
+McPAT results can't answer the question, because we are missing the work_time and idle_time. Both of these parameters can be given by a gem5 simulation.
+
+#### Answer 3
+The Xeon processor can't be more energy efficient than the ARM A9 processor for the following reason: let's say we have two systems, one with the Xeon and another with the ARM A9. The Xeon system is 40 times faster than the ARM A9 system. Both systems power on at the same time and start executing the same program. Let's say the program runs for 1 hour on the Xeon system, so for 40 hours on the ARM A9 system according to our previous assumption. The Xeon system consumes ... watts when working, so ... Wh till program finishes its execution, while the ARM A9 system consumes ... watts when working, so ... * 40 hours = ... Wh till program finishes its execution. Should both systems power off when the execution finishes, the ARM A9 is obviously more energy efficient since it consumed less power. But, even if the Xeon had consumed less power till execution finished, should the systems stay powered on and idle, at a certain moment the ARM A9 system would surpass the Xeon one, because of its lower idle energy power consumption (mainly defined be the leakage power loss if we assume the dynamic power dissipation is minor). 
+
+### Sources
+* https://www.eetimes.com/a-methodology-for-minimizing-leakage-current/
+* https://www.eetimes.com/solve-leakage-and-dynamic-power-loss/
