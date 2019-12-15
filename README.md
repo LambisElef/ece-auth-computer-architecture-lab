@@ -149,7 +149,9 @@ We chose this function for the following reasons:
 * #### 456.hmmer
   This benchmark doesn't scale with L2 cache at all, so we choose the most simple one (512kB 4-way, maybe even less associativity). Otherwise, the cost would increase with no performance gain. About the L1 data cache, we choose the decreased size of 32kB 2-way, because the performance hit compared to 64kB 2-way is less than 1%, compared to a double cost for the L1 data cache. The 64kB 1-way has about the same cost with the 32k 2-way, but results in even worse performance.
 * #### 458.sjeng
-
+  This benchmark doesn't scale at all with L1 and L2 cache, so we choose the smaller and simplest for the ones we tested. On the other hand, it scales a lot with cache line size increase. The total cost increase for a doubled cache line size is 40% giving a performance gain of 34%, while for a quadrupled cache line size is 87% giving a performance gain of 50%. We believe that this cost increase justifies the extra cost.
+* #### 470.lbm
+  The optimal is the same with the one from 458.sjeng.
 
 #### Lab Assignment Review (in greek)
 Η δεύτερη εργασία μας φάνηκε αρκετά πιο απαιτητική από την πρώτη, ωστόσο μας βοήθησε να καταλάβουμε εις βάθος το σύστημα κρυφών μνημών και το ρόλο της κάθε παραμέτρου. Ειδικά το κομμάτι με την εξίσωση κόστους ήταν χρονοβόρο, αν και βοήθησε στην κατανόηση λεπτομερειών που δε χρειάστηκε να σκεφτούμε στο προηγούμενο κομμάτι. 
@@ -159,3 +161,7 @@ We chose this function for the following reasons:
 * https://www.spec.org/cpu2006/Docs/
 * https://www.d.umn.edu/~gshute/arch/cache-addressing.xhtml
 * https://cseweb.ucsd.edu/classes/su07/cse141/cache-handout.pdf
+
+## 3rd Lab
+
+
