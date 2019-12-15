@@ -134,19 +134,22 @@ All of the comparisons below are relative to the memory configuration of the fir
 ### Stage three
 
 #### Cost Function
-We came up with this cost function: __{n1/8kB + (k1D+k1I)^2 + n2/256kB + k2^2 + c/8B}__ where n1 represents the L1 Cache Size, k1D the L1 Data Cache Associativity, k1I the L1 Instruction Cache Associativity, n2 the L2 Cache Size, k2 the L2 Cache Associativity and c the Cache Line Size.  
+We came up with this cost function: __{n1/8kB + (k1D+k1I)^1.4 + n2/256kB + k2^1.4 + c/8B}__ where n1 represents the L1 Cache Size, k1D the L1 Data Cache Associativity, k1I the L1 Instruction Cache Associativity, n2 the L2 Cache Size, k2 the L2 Cache Associativity and c the Cache Line Size.  
 We chose this function for the following reasons:
 * The L1 cache is more expensive per kB than the L2 cache. This is modeled by the different constants multiplied with the sizes. For instance, 64kB of L1 Cache and 2MB of L2 Cache cost the same.
-* The cost of higher associativity is modeled by its squared value (squared for complexity reasons eg 2->4 way is more simple than 4->8 way).
+* The cost of higher associativity is modeled by its value raised to the power 1.4 for complexity reasons eg 2->4 way is more simple than 4->8 way and their cost relation is not linear, but still smaller than squared.
 * The cache line size costs a lot per byte, because an increased size leads to more words being saved into the same block/line, resulting in more comparisons (more expensive multiplexer) to find the desired one. What's more, the number of blocks/lines in the cache is reduced and conflict misses may increase in case spacial locality is not present.
+* We couldn't determine what costs more: A doubling in size or associativity? eg L1 32kB 4-way vs L1 64kB 2-way.
 
-| MinorCPU 2GHz            | L1 Data | CPI        | L1 D Cache Misses | L1 I Cache Misses | L2 Cache Misses |
-| ------------------------ |--------------| ---------- | ------------------| ------------------| ----------------|
-| 401.bzip2                | 83.982       | 1.679650   | 0.014798          | 0.000077          | 0.282163        |
-| 429.mcf                  | 64.955       | 1.299095   | 0.002108          | 0.023612          | 0.055046        |
-| 456.hmmer                | 59.396       | 1.187917   | 0.001637          | 0.000221          | 0.077760        |
-| 458.sjeng                | 513.528      | 10.270554  | 0.121831          | 0.000020          | 0.999972        |
-| 470.lbm                  | 174.671      | 3.493415   | 0.060972          | 0.000094          | 0.999944        |
+#### Cost Function Application
+* #### 401.bzip2
+  For this benchmark, we decided that the most effiecient configuration would be a small L2 cache (512kB) with little associativity (4-way, maybe less, didn't have the time to test) and a 64kB L1 2-way cache, because the performance increase for a bigger cache (2MB) and/or higher associativity (8-way) would be less than 5% and for a bigger L1 cache (128kB) and/or higher associativity (8-way) would be less than 3%, while the cost for the L2 cache is more than quadrupled and for the L1 cache more than doubled. We also did a test for increased cache line size (64B->128B) and noticed worse performance, so we obviously prefer the default 64B size.
+* #### 429.mcf
+  This benchmark doesn't scale with L2 cache at all, so we choose the most simple one (512kB 4-way, maybe even less associativity). Otherwise, the cost would increase with no performance gain. About the L1 cache, we tested the instruction one and witnessed a significant performance increase for a little bigger or more complex cache. We choose the 64kB 2-way instead of the 32kB 4-way because it costs less according to our cost function.
+* #### 456.hmmer
+  This benchmark doesn't scale with L2 cache at all, so we choose the most simple one (512kB 4-way, maybe even less associativity). Otherwise, the cost would increase with no performance gain. About the L1 data cache, we choose the decreased size of 32kB 2-way, because the performance hit compared to 64kB 2-way is less than 1%, compared to a double cost for the L1 data cache. The 64kB 1-way has about the same cost with the 32k 2-way, but results in even worse performance.
+* #### 458.sjeng
+
 
 #### Lab Assignment Review (in greek)
 Η δεύτερη εργασία μας φάνηκε αρκετά πιο απαιτητική από την πρώτη, ωστόσο μας βοήθησε να καταλάβουμε εις βάθος το σύστημα κρυφών μνημών και το ρόλο της κάθε παραμέτρου. Ειδικά το κομμάτι με την εξίσωση κόστους ήταν χρονοβόρο, αν και βοήθησε στην κατανόηση λεπτομερειών που δε χρειάστηκε να σκεφτούμε στο προηγούμενο κομμάτι. 
@@ -154,4 +157,5 @@ We chose this function for the following reasons:
 #### Sources
 * http://gem5.org/
 * https://www.spec.org/cpu2006/Docs/
+* https://www.d.umn.edu/~gshute/arch/cache-addressing.xhtml
 * https://cseweb.ucsd.edu/classes/su07/cse141/cache-handout.pdf
