@@ -3,7 +3,7 @@ Lab results for "Computer Architecture" AUTh course by students Eleftheriadis Ch
 
 ## 1st Lab
 
-### Hello
+#### Hello
 The results of the execution of the program are placed into the "hello_result" folder.
 
 | Table           | Value         | Location in starter_se.py                                   |
@@ -18,14 +18,14 @@ The results of the execution of the program are placed into the "hello_result" f
 
 More information about caches' size and associativity can be found in config.ini.
 
-### In-order CPU Types
+#### In-order CPU Types
 * #### MinorCPU
   Minor is an in-order processor model with a fixed pipeline but configurable data structures and execute behaviour. It is intended to be used to model processors with strict in-order execution behaviour and allows visualisation of an instruction's position in the pipeline through the MinorTrace/minorview.py format/tool. The intention is to provide a framework for micro-architecturally correlating the model with a particular, chosen processor with similar capabilities.
 
 * #### SimpleCPU
   The SimpleCPU is a purely functional, in-order model that is suited for cases where a detailed model is not necessary. This can include warm-up periods, client systems that are driving a host, or just testing to make sure a program works. It is now broken up into three classes, the BaseSimpleCPU, the AtomicSimpleCPU and the TimingSimpleCPU.
 
-### Our benchmarks using qsort.c
+#### Our benchmarks using qsort.c
 
 | MinorCPU + DDR4_2400_8x8 | Time (in ms) |
 | ------------------------ |--------------|
@@ -48,16 +48,16 @@ More information about caches' size and associativity can be found in config.ini
 | DDR4_2400_8x8        | 16.437        |
 | LPDDR3_1600_1x32     | 16.451        |
 
-### Notes
+#### Notes
 As expected, the execution time was cut in half when the frequency was doubled. What's more there was no noticeable difference regarding the execution time with different memory types, because our program wasn't memory intensive. The needed data was transfered to cache only once and there were no cache misses.  
 We also implemented a version with the gcc flag -O3, which indeed resulted in ~10% faster execution.
 
-### Lab Assignment Review (in greek)
+#### Lab Assignment Review (in greek)
 Θεωρούμε ότι το πρώτο εργαστήριο του μαθήματος πέτυχε το σκοπό του όπως επισημάνθηκε στις σημειώσεις του. Οι οδηγίες για την εγκατάσταση του Gem5 ήταν ακριβείς και λειτούργησαν όπως αναμενόταν στην τελευταία έκδοση 19.10 Ubuntu. Ιδιαίτερα βοηθητικό ήταν το κομμάτι με τις προτεραιότητες για τις διάφορες εκδόσεις του gcc που έχουμε πλέον εγκατεστημένες.  
 Όσον αφορά στη χρήση του Gem5, αρχικά είχαμε μπερδευτεί αρκετά γύρω από διάφορα πράγματα, το python script για την επιλογή του υλικού προσομοίωσης και τα flags του κάθε script, τη συχνότητα προσομοίωσης, τα πολλαπλά πεδία στα αρχεία stats και config και τον τρόπο με τον οποίο έπρεπε να βρούμε αυτά που μας ενδιέφεραν. Βέβαια, με λίγες ώρες παρατήρησης των αρχείων και χρήσης του documentation του προσομοιωτή καταφέραμε να καταλάβουμε τα ζητούμενα και είμαστε πλέον ικανοί να διαβάζουμε τα στατιστικά με σχετική ευκολία.  
 Τέλος, θα θέλαμε να είχαμε "παίξει" λίγο παραπάνω με το εκτελέσιμο πρόγραμμα, για παράδειγμα να το κάναμε περισσότερο memory intensive, ώστε οι διάφορες τοπολογίες μνήμης (τόσο τεχνολογία, όσο και κανάλια) να επηρέαζαν περισσότερο το χρόνο εκτέλεσης, ωστόσο λόγω λοιπών υποχρεώσεων ελπίζουμε να δοκιμάσουμε αργότερα.
 
-### Sources
+#### Sources
 * http://gem5.org/
 
 
@@ -134,8 +134,24 @@ All of the comparisons below are relative to the memory configuration of the fir
 ### Stage three
 
 #### Cost Function
-We came up with this cost function: __CPI * {2*(n1/16kB) + 4*(k1) + 2*(n2/128kB) + 2*(k2) + 10*(c/64B)}__ where n1 represents the L1 Cache Size, k1 the L1 Cache Associativity, n2 the L2 Cache Size, k2 the L2 Cache Associativity and c the Cache Line Size.
+We came up with this cost function: __{n1/8kB + (k1D+k1I)^2 + n2/256kB + k2^2 + c/8B}__ where n1 represents the L1 Cache Size, k1D the L1 Data Cache Associativity, k1I the L1 Instruction Cache Associativity, n2 the L2 Cache Size, k2 the L2 Cache Associativity and c the Cache Line Size.  
+We chose this function for the following reasons:
+* The L1 cache is more expensive per kB than the L2 cache. This is modeled by the different constants multiplied with the sizes. For instance, 64kB of L1 Cache and 2MB of L2 Cache cost the same.
+* The cost of higher associativity is modeled by its squared value (squared for complexity reasons eg 2->4 way is more simple than 4->8 way).
+* The cache line size costs a lot per byte, because an increased size leads to more words being saved into the same block/line, resulting in more comparisons (more expensive multiplexer) to find the desired one. What's more, the number of blocks/lines in the cache is reduced and conflict misses may increase in case spacial locality is not present.
 
-### Sources
+| MinorCPU 2GHz            | L1 Data | CPI        | L1 D Cache Misses | L1 I Cache Misses | L2 Cache Misses |
+| ------------------------ |--------------| ---------- | ------------------| ------------------| ----------------|
+| 401.bzip2                | 83.982       | 1.679650   | 0.014798          | 0.000077          | 0.282163        |
+| 429.mcf                  | 64.955       | 1.299095   | 0.002108          | 0.023612          | 0.055046        |
+| 456.hmmer                | 59.396       | 1.187917   | 0.001637          | 0.000221          | 0.077760        |
+| 458.sjeng                | 513.528      | 10.270554  | 0.121831          | 0.000020          | 0.999972        |
+| 470.lbm                  | 174.671      | 3.493415   | 0.060972          | 0.000094          | 0.999944        |
+
+#### Lab Assignment Review (in greek)
+Η δεύτερη εργασία μας φάνηκε αρκετά πιο απαιτητική από την πρώτη, ωστόσο μας βοήθησε να καταλάβουμε εις βάθος το σύστημα κρυφών μνημών και το ρόλο της κάθε παραμέτρου. Ειδικά το κομμάτι με την εξίσωση κόστους ήταν χρονοβόρο, αν και βοήθησε στην κατανόηση λεπτομερειών που δε χρειάστηκε να σκεφτούμε στο προηγούμενο κομμάτι. 
+
+#### Sources
 * http://gem5.org/
 * https://www.spec.org/cpu2006/Docs/
+* https://cseweb.ucsd.edu/classes/su07/cse141/cache-handout.pdf
