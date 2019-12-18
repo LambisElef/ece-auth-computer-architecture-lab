@@ -134,7 +134,7 @@ All of the comparisons below are relative to the memory configuration of the fir
 ### Stage three
 
 #### Cost Function
-We came up with this cost function: __{n1/8kB + (k1D+k1I)^1.4 + n2/256kB + k2^1.4 + c/8B}__ where n1 represents the L1 Cache Size, k1D the L1 Data Cache Associativity, k1I the L1 Instruction Cache Associativity, n2 the L2 Cache Size, k2 the L2 Cache Associativity and c the Cache Line Size.  
+We came up with this cost function: __{n1/8kB + (k1D+k1I)^1.4 + n2/256kB + k2 + c/8B}__ where n1 represents the L1 Cache Size, k1D the L1 Data Cache Associativity, k1I the L1 Instruction Cache Associativity, n2 the L2 Cache Size, k2 the L2 Cache Associativity and c the Cache Line Size.  
 We chose this function for the following reasons:
 * The L1 cache is more expensive per kB than the L2 cache. This is modeled by the different constants multiplied with the sizes. For instance, 64kB of L1 Cache and 2MB of L2 Cache cost the same.
 * The cost of higher associativity is modeled by its value raised to the power 1.4 for complexity reasons eg 2->4 way is more simple than 4->8 way and their cost relation is not linear, but still smaller than squared.
@@ -153,18 +153,87 @@ We chose this function for the following reasons:
 * #### 470.lbm
   The optimal is the same with the one from 458.sjeng.
 
+#### Costs using our cost function. Parameters not defined are the default ones. (CPI * Cost Function)
+
 | MinorCPU 2GHz 401.bzip2  | Score        |
 | ------------------------ |--------------|
-| L1                       | 161.025      |
-| 429.mcf                  | 127.942      |
-| 456.hmmer                | 118.530      |
-| 458.sjeng                | 704.056      |
-| 470.lbm                  | 262.327      |
+| Default                  | 72.165       |
+| L2: 512kB 4-way          | 58.178       |
+| L2: 512kB 8-way          | 65.160       |
+| L2: 1MB 4-way            | 59.866       |
+| L2: 2MB 4-way            | 65.414       |
+| L2: 4MB 4-way            | 77.696       |
+| L2: 4MB 8-way            | 84.287       |
+| L1D: 64kB 4-way          | 80.332       |
+| L1D: 128kB 2-way         | 84.112       |
+| L1D: 128kB 4-way         | 92.458       |
+| Cache Line Size: 128B    | 84.909       |
 
+| MinorCPU 2GHz 429.mcf    | Score        |
+| ------------------------ |--------------|
+| Default                  | 55.814       |
+| L1I: 32kB 4-way          | 55.792       |
+| L1I: 64kB 2-way          | 54.272       |
+| L1I: 64kB 4-way          | 60.413       |
+| L2: 512kB 4-way          | 43.114       |
+| L2: 512kB 8-way          | 48.334       |
+| L2: 1MB 4-way            | 45.582       |
+| L2: 1MB 8-way            | 45.584       |
+| L2: 2MB 4-way            | 50.616       |
+| L2: 4MB 8-way            | 66.177       |
+| Cache Line Size: 128B    | 67.809       |
 
+| MinorCPU 2GHz 456.hmmer  | Score        |
+| ------------------------ |--------------|
+| Default                  | 51.038       |
+| L1D: 32kB 2-way          | 46.420       |
+| L1D: 64kB 1-way          | 49.253       |
+| L2: 512kB 8-way          | 43.910       |
+| L2: 512kB 4-way          | 39.158       |
+| L2: 512kB 2-way          | 36.784       |
+| L2: 1MB 8-way            | 46.286       |
+| L2: 1MB 4-way            | 36.783       |
+| L2: 2MB 4-way            | 46.286       |
+| L2: 4MB 8-way            | 60.541       |
+| L2: 4MB 4-way            | 55.789       |
+
+| MinorCPU 2GHz 458.sjeng  | Score        |
+| ------------------------ |--------------|
+| Default                  | 441.26       |
+| L1I: 32kB 1-way          | 417.56       |
+| L1I: 16kB 2-way          | 420.74       |
+| L1D: 128kB 2-way         | 523.43       |
+| L1D: 128kB 4-way         | 578.09       |
+| L1D: 256kB 4-way         | 742.44       |
+| L2: 512kB 2-way          | 318.14       |
+| L2: 512kB 4-way          | 338.68       |
+| L2: 512kB 8-way          | 379.73       |
+| L2: 1MB 4-way            | 359.18       |
+| L2: 1MB 8-way            | 400.29       |
+| L2: 2MB 2-way            | 379.62       |
+| L2: 4MB 1-way            | 451.31       |
+| L2: 4MB 4-way            | 482.09       |
+| L2: 4MB 8-way            | 523.17       |
+| Cache Line Size: 128B    | 346.53       |
+| Cache Line Size: 256B    | 346.58       |
+
+| MinorCPU 2GHz 470.lbm    | Score        |
+| ------------------------ |--------------|
+| Default                  | 150.09       |
+| L1D: 128kB 2-way         | 178.03       |
+| L1D: 128kB 4-way         | 197.39       |
+| L2: 512kB 1-way          | 105.08       |
+| L2: 512kB 4-way          | 115.15       |
+| L2: 2MB 1-way            | 125.63       |
+| L2: 2MB 2-way            | 129.13       |
+| L2: 4MB 1-way            | 153.41       |
+| L2: 4MB 4-way            | 163.88       |
+| L2: 4MB 8-way            | 177.84       |
+| Cache Line Size: 128B    | 131.59       |
+| Cache Line Size: 256B    | 133.30       |
 
 #### Lab Assignment Review (in greek)
-Η δεύτερη εργασία μας φάνηκε αρκετά πιο απαιτητική από την πρώτη, ωστόσο μας βοήθησε να καταλάβουμε εις βάθος το σύστημα κρυφών μνημών και το ρόλο της κάθε παραμέτρου. Ειδικά το κομμάτι με την εξίσωση κόστους ήταν χρονοβόρο, αν και βοήθησε στην κατανόηση λεπτομερειών που δε χρειάστηκε να σκεφτούμε στο προηγούμενο κομμάτι. 
+Η δεύτερη εργασία μας φάνηκε αρκετά πιο απαιτητική από την πρώτη, ωστόσο μας βοήθησε να καταλάβουμε εις βάθος το σύστημα κρυφών μνημών και το ρόλο της κάθε παραμέτρου. Ειδικά το κομμάτι με την εξίσωση κόστους ήταν χρονοβόρο, αν και βοήθησε στην κατανόηση λεπτομερειών που δε χρειάστηκε να σκεφτούμε στο προηγούμενο κομμάτι. Το χειρότερο που συνέβη ήταν ότι προσπαθήσαμε να κάνουμε στοχευμένους ελέγχους για κάθε benchmark, ωστόσο αυτό δυσχαίρυνε κατά πολύ την αυτοματοποίηση της όλης διαδικασίας.
 
 ### Sources
 * http://gem5.org/
@@ -192,7 +261,82 @@ The Xeon processor can't be more energy efficient than the ARM A9 processor for 
 
 ### Stage two
 
+| MinorCPU 2GHz 401.bzip2  | Score        |
+| ------------------------ |--------------|
+| Default                  | 72.165       |
+| L2: 512kB 4-way          | 101.97       |
+| L2: 512kB 8-way          | 102.18       |
+| L2: 1MB 4-way            | 118.52       |
+| L2: 2MB 4-way            | 150.42       |
+| L2: 4MB 4-way            | 201.76       |
+| L2: 4MB 8-way            | 203.24       |
+| L1D: 64kB 4-way          | 104.75       |
+| L1D: 128kB 2-way         | 208.25       |
+| L1D: 128kB 4-way         | 190.95       |
+| Cache Line Size: 128B    | 615.26       |
 
+| MinorCPU 2GHz 429.mcf    | Score        |
+| ------------------------ |--------------|
+| Default                  | 55.814       |
+| L1I: 32kB 4-way          | 76.651       |
+| L1I: 64kB 2-way          | 103.06       |
+| L1I: 64kB 4-way          | 82.321       |
+| L2: 512kB 4-way          | 56.437       |
+| L2: 512kB 8-way          | 56.649       |
+| L2: 1MB 4-way            | 68.900       |
+| L2: 1MB 8-way            | 68.897       |
+| L2: 2MB 4-way            | 90.094       |
+| L2: 4MB 8-way            | 125.06       |
+| Cache Line Size: 128B    | 393.99       |
+
+| MinorCPU 2GHz 456.hmmer  | Score        |
+| ------------------------ |--------------|
+| Default                  | 51.038       |
+| L1D: 32kB 2-way          | 34.614       |
+| L1D: 64kB 1-way          | 77.222       |
+| L2: 512kB 8-way          | 49.051       |
+| L2: 512kB 4-way          | 48.849       |
+| L2: 512kB 2-way          | 48.858       |
+| L2: 1MB 8-way            | 59.830       |
+| L2: 1MB 4-way            | 59.842       |
+| L2: 2MB 4-way            | 78.458       |
+| L2: 4MB 8-way            | 108.52       |
+| L2: 4MB 4-way            | 107.68       |
+
+| MinorCPU 2GHz 458.sjeng  | Score        |
+| ------------------------ |--------------|
+| Default                  | 441.26       |
+| L1I: 32kB 1-way          | 4561.6       |
+| L1I: 16kB 2-way          | 4529.0       |
+| L1D: 128kB 2-way         | 6835.9       |
+| L1D: 128kB 4-way         | 6094.7       |
+| L1D: 256kB 4-way         | 9473.1       |
+| L2: 512kB 2-way          | 2974.5       |
+| L2: 512kB 4-way          | 2974.2       |
+| L2: 512kB 8-way          | 2986.2       |
+| L2: 1MB 4-way            | 3648.2       |
+| L2: 1MB 8-way            | 3648.0       |
+| L2: 2MB 2-way            | 4792.9       |
+| L2: 4MB 1-way            | 6496.0       |
+| L2: 4MB 4-way            | 6589.4       |
+| L2: 4MB 8-way            | 6642.3       |
+| Cache Line Size: 128B    | 8566.1       |
+| Cache Line Size: 256B    | 19194        |
+
+| MinorCPU 2GHz 470.lbm    | Score        |
+| ------------------------ |--------------|
+| Default                  | 150.09       |
+| L1D: 128kB 2-way         | 826.02       |
+| L1D: 128kB 4-way         | 744.22       |
+| L2: 512kB 1-way          | 362.45       |
+| L2: 512kB 4-way          | 362.38       |
+| L2: 2MB 1-way            | 571.25       |
+| L2: 2MB 2-way            | 579.65       |
+| L2: 4MB 1-way            | 784.21       |
+| L2: 4MB 4-way            | 795.48       |
+| L2: 4MB 8-way            | 801.80       |
+| Cache Line Size: 128B    | 1301.2       |
+| Cache Line Size: 256B    | 2961.89      |
 
 ### Sources
 * https://www.eetimes.com/a-methodology-for-minimizing-leakage-current/
