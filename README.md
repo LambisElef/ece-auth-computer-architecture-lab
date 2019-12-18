@@ -153,13 +153,13 @@ We chose this function for the following reasons:
 * #### 470.lbm
   The optimal is the same with the one from 458.sjeng.
 
-| MinorCPU 1GHz            | Time (in ms) | CPI        | L1 D Cache Misses | L1 I Cache Misses | L2 Cache Misses |
-| ------------------------ |--------------| ---------- | ------------------| ------------------| ----------------|
-| 401.bzip2                | 161.025      | 1.610247   | 0.014675          | 0.000077          | 0.282157        |
-| 429.mcf                  | 127.942      | 1.279422   | 0.002108          | 0.023627          | 0.055046        |
-| 456.hmmer                | 118.530      | 1.185304   | 0.001629          | 0.000221          | 0.077747        |
-| 458.sjeng                | 704.056      | 7.040561   | 0.121831          | 0.000020          | 0.999972        |
-| 470.lbm                  | 262.327      | 2.623265   | 0.060971          | 0.000094          | 0.999944        |
+| MinorCPU 2GHz 401.bzip2  | Score        |
+| ------------------------ |--------------|
+| L1                       | 161.025      |
+| 429.mcf                  | 127.942      |
+| 456.hmmer                | 118.530      |
+| 458.sjeng                | 704.056      |
+| 470.lbm                  | 262.327      |
 
 
 
@@ -189,6 +189,10 @@ McPAT results can't answer the question, because we are missing the work_time an
 
 #### Answer 3
 The Xeon processor can't be more energy efficient than the ARM A9 processor for the following reason: let's say we have two systems, one with the Xeon and another with the ARM A9. The Xeon system is 40 times faster than the ARM A9 system. Both systems power on at the same time and start executing the same program. Let's say the program runs for 1 hour on the Xeon system, so for 40 hours on the ARM A9 system according to our previous assumption. The Xeon system consumes ~135 watts when working in full load, so 135 Wh till program finishes its execution, while the ARM A9 system consumes 1.75 watts when working in full load, so 1.75 W * 40 hours = 70 Wh till program finishes its execution. Should both systems power off when the execution finishes, the ARM A9 is obviously more energy efficient since it consumed less power. But, even if the Xeon had consumed less power till execution finished, should the systems stay powered on and idle, at a certain moment the ARM A9 system would surpass the Xeon one, because of its lower idle energy power consumption (mainly defined be the leakage power loss if we assume the dynamic power dissipation is minor). 
+
+### Stage two
+
+
 
 ### Sources
 * https://www.eetimes.com/a-methodology-for-minimizing-leakage-current/
