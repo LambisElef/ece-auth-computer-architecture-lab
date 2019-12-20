@@ -1,0 +1,175 @@
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_0.txt
+peak: 3.689680 W, peakL2: 0.369155 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_1.txt
+peak: 3.691060 W, peakL2: 0.370538 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_2.txt
+peak: 3.758630 W, peakL2: 0.438105 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_3.txt
+peak: 3.865030 W, peakL2: 0.544505 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_4.txt
+peak: 3.989510 W, peakL2: 0.668988 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_5.txt
+peak: 3.990780 W, peakL2: 0.670252 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_6.txt
+peak: 3.598030 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_7.txt
+peak: 4.362660 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_8.txt
+peak: 4.142890 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specbzip_9.txt
+peak: 9.224890 W, peakL2: 2.411116 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_0.txt
+peak: 4.271100 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_1.txt
+peak: 4.865000 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_2.txt
+peak: 4.561800 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_3.txt
+peak: 3.689680 W, peakL2: 0.369155 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_4.txt
+peak: 3.691060 W, peakL2: 0.370538 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_5.txt
+peak: 3.758630 W, peakL2: 0.438105 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_6.txt
+peak: 3.759560 W, peakL2: 0.439030 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_7.txt
+peak: 3.865030 W, peakL2: 0.544505 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_8.txt
+peak: 3.990780 W, peakL2: 0.670252 W
+Reading simulation time from: mcpat_results/mcpat_result_specmcf_9.txt
+peak: 9.228860 W, peakL2: 2.415074 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_0.txt
+peak: 2.983660 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_1.txt
+peak: 3.860870 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_2.txt
+peak: 3.691060 W, peakL2: 0.370538 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_3.txt
+peak: 3.689680 W, peakL2: 0.369155 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_4.txt
+peak: 3.689410 W, peakL2: 0.368888 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_5.txt
+peak: 3.759560 W, peakL2: 0.439030 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_6.txt
+peak: 3.758630 W, peakL2: 0.438105 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_7.txt
+peak: 3.865030 W, peakL2: 0.544505 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_8.txt
+peak: 3.990780 W, peakL2: 0.670252 W
+Reading simulation time from: mcpat_results/mcpat_result_spechmmer_9.txt
+peak: 3.989510 W, peakL2: 0.668988 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_0.txt
+peak: 3.835520 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_1.txt
+peak: 3.817410 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_2.txt
+peak: 3.846740 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_3.txt
+peak: 4.362660 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_4.txt
+peak: 4.142890 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_5.txt
+peak: 4.675560 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_6.txt
+peak: 3.689410 W, peakL2: 0.368888 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_7.txt
+peak: 3.689680 W, peakL2: 0.369155 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_8.txt
+peak: 3.691060 W, peakL2: 0.370538 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_9.txt
+peak: 3.758630 W, peakL2: 0.438105 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_10.txt
+peak: 3.759560 W, peakL2: 0.439030 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_11.txt
+peak: 3.864920 W, peakL2: 0.544394 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_12.txt
+peak: 3.988000 W, peakL2: 0.667475 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_13.txt
+peak: 3.989510 W, peakL2: 0.668988 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_14.txt
+peak: 3.990780 W, peakL2: 0.670252 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_15.txt
+peak: 9.228860 W, peakL2: 2.415074 W
+Reading simulation time from: mcpat_results/mcpat_result_specsjeng_16.txt
+peak: 27.206600 W, peakL2: 7.100969 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_0.txt
+peak: 4.362660 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_1.txt
+peak: 4.142890 W, peakL2: 0.545141 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_2.txt
+peak: 3.689370 W, peakL2: 0.368847 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_3.txt
+peak: 3.689680 W, peakL2: 0.369155 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_4.txt
+peak: 3.863320 W, peakL2: 0.542797 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_5.txt
+peak: 3.864920 W, peakL2: 0.544394 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_6.txt
+peak: 3.988000 W, peakL2: 0.667475 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_7.txt
+peak: 3.989510 W, peakL2: 0.668988 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_8.txt
+peak: 3.990780 W, peakL2: 0.670252 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_9.txt
+peak: 9.224100 W, peakL2: 2.410312 W
+Reading simulation time from: mcpat_results/mcpat_result_speclibm_10.txt
+peak: 27.201600 W, peakL2: 7.096009 W
+lambis@Lambis-Laptop:~/mcpat/Scripts$ bash peak_script.sh
+peak: 3.689680 W, peakL2: 0.369155 W
+peak: 3.691060 W, peakL2: 0.370538 W
+peak: 3.758630 W, peakL2: 0.438105 W
+peak: 3.865030 W, peakL2: 0.544505 W
+peak: 3.989510 W, peakL2: 0.668988 W
+peak: 3.990780 W, peakL2: 0.670252 W
+peak: 3.598030 W, peakL2: 0.545141 W
+peak: 4.362660 W, peakL2: 0.545141 W
+peak: 4.142890 W, peakL2: 0.545141 W
+peak: 9.224890 W, peakL2: 2.411116 W
+peak: 4.271100 W, peakL2: 0.545141 W
+peak: 4.865000 W, peakL2: 0.545141 W
+peak: 4.561800 W, peakL2: 0.545141 W
+peak: 3.689680 W, peakL2: 0.369155 W
+peak: 3.691060 W, peakL2: 0.370538 W
+peak: 3.758630 W, peakL2: 0.438105 W
+peak: 3.759560 W, peakL2: 0.439030 W
+peak: 3.865030 W, peakL2: 0.544505 W
+peak: 3.990780 W, peakL2: 0.670252 W
+peak: 9.228860 W, peakL2: 2.415074 W
+peak: 2.983660 W, peakL2: 0.545141 W
+peak: 3.860870 W, peakL2: 0.545141 W
+peak: 3.691060 W, peakL2: 0.370538 W
+peak: 3.689680 W, peakL2: 0.369155 W
+peak: 3.689410 W, peakL2: 0.368888 W
+peak: 3.759560 W, peakL2: 0.439030 W
+peak: 3.758630 W, peakL2: 0.438105 W
+peak: 3.865030 W, peakL2: 0.544505 W
+peak: 3.990780 W, peakL2: 0.670252 W
+peak: 3.989510 W, peakL2: 0.668988 W
+peak: 3.835520 W, peakL2: 0.545141 W
+peak: 3.817410 W, peakL2: 0.545141 W
+peak: 3.846740 W, peakL2: 0.545141 W
+peak: 4.362660 W, peakL2: 0.545141 W
+peak: 4.142890 W, peakL2: 0.545141 W
+peak: 4.675560 W, peakL2: 0.545141 W
+peak: 3.689410 W, peakL2: 0.368888 W
+peak: 3.689680 W, peakL2: 0.369155 W
+peak: 3.691060 W, peakL2: 0.370538 W
+peak: 3.758630 W, peakL2: 0.438105 W
+peak: 3.759560 W, peakL2: 0.439030 W
+peak: 3.864920 W, peakL2: 0.544394 W
+peak: 3.988000 W, peakL2: 0.667475 W
+peak: 3.989510 W, peakL2: 0.668988 W
+peak: 3.990780 W, peakL2: 0.670252 W
+peak: 9.228860 W, peakL2: 2.415074 W
+peak: 27.206600 W, peakL2: 7.100969 W
+peak: 4.362660 W, peakL2: 0.545141 W
+peak: 4.142890 W, peakL2: 0.545141 W
+peak: 3.689370 W, peakL2: 0.368847 W
+peak: 3.689680 W, peakL2: 0.369155 W
+peak: 3.863320 W, peakL2: 0.542797 W
+peak: 3.864920 W, peakL2: 0.544394 W
+peak: 3.988000 W, peakL2: 0.667475 W
+peak: 3.989510 W, peakL2: 0.668988 W
+peak: 3.990780 W, peakL2: 0.670252 W
+peak: 9.224100 W, peakL2: 2.410312 W
+peak: 27.201600 W, peakL2: 7.096009 W
