@@ -267,7 +267,12 @@ The Delay is the program's execution CPU time.
 The Area is the Processor->Area parameter.
 
 #### Answer 2
-
+![L1 Power](/3rd_Lab_Data/charts/l1d_p.mcf_l1.png)
+![L1 Area](/3rd_Lab_Data/charts/l1d_a.mcf_l1.png)
+![L2 Power](/3rd_Lab_Data/charts/l2_p.mcf_l1.png)
+![L2 Area](/3rd_Lab_Data/charts/l2_a.mcf_l1.png)
+![CLS Power](/3rd_Lab_Data/charts/cls_p.mcf_l1.png)
+![CLS Area](/3rd_Lab_Data/charts/cls_a.mcf_l1.png)
 
 #### Answer 3
 Our cost function took into account the cost in CPI and die area according to our assumptions. The EDAP criterion was also based on the execution time and the (accurate) cost in die area, as well as the energy consumed by the CPU. Both of these functions return similar results about the best CPU configuration, though the EDAP is a little more accurate due to our lack of knowledge about the exact die area cost and also the energy consumed which our function didn't take into account. 
