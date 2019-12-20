@@ -261,9 +261,22 @@ The Xeon processor can't be more energy efficient than the ARM A9 processor for 
 
 ### Stage two
 
+#### Answer 1
+The Energy is calculated as follows: __Core->Subthreshold Leakage + Core->Gate Leakage + Core->Runtime Dynamic + L2->Subthreshold Leakage + L2->Gate Leakage + L2->Runtime Dynamic__, though L2->Subthreshold Leakage and L2->Gate Leakage were really minor.  
+The Delay is the program's execution CPU time.  
+The Area is the Processor->Area parameter.
+
+#### Answer 2
+
+
+#### Answer 3
+Our cost function took into account the cost in CPI and die area according to our assumptions. The EDAP criterion was also based on the execution time and the (accurate) cost in die area, as well as the energy consumed by the CPU. Both of these functions return similar results about the best CPU configuration, though the EDAP is a little more accurate due to our lack of knowledge about the exact die area cost and also the energy consumed which our function didn't take into account. 
+
+#### Costs using the new EDAP function.
+
 | MinorCPU 2GHz 401.bzip2  | Score        |
 | ------------------------ |--------------|
-| Default                  | 72.165       |
+| Default                  | 159.68       |
 | L2: 512kB 4-way          | 101.97       |
 | L2: 512kB 8-way          | 102.18       |
 | L2: 1MB 4-way            | 118.52       |
@@ -277,7 +290,7 @@ The Xeon processor can't be more energy efficient than the ARM A9 processor for 
 
 | MinorCPU 2GHz 429.mcf    | Score        |
 | ------------------------ |--------------|
-| Default                  | 55.814       |
+| Default                  | 71.052       |
 | L1I: 32kB 4-way          | 76.651       |
 | L1I: 64kB 2-way          | 103.06       |
 | L1I: 64kB 4-way          | 82.321       |
@@ -291,7 +304,7 @@ The Xeon processor can't be more energy efficient than the ARM A9 processor for 
 
 | MinorCPU 2GHz 456.hmmer  | Score        |
 | ------------------------ |--------------|
-| Default                  | 51.038       |
+| Default                  | 84.340       |
 | L1D: 32kB 2-way          | 34.614       |
 | L1D: 64kB 1-way          | 77.222       |
 | L2: 512kB 8-way          | 49.051       |
@@ -305,7 +318,7 @@ The Xeon processor can't be more energy efficient than the ARM A9 processor for 
 
 | MinorCPU 2GHz 458.sjeng  | Score        |
 | ------------------------ |--------------|
-| Default                  | 441.26       |
+| Default                  | 5075.2       |
 | L1I: 32kB 1-way          | 4561.6       |
 | L1I: 16kB 2-way          | 4529.0       |
 | L1D: 128kB 2-way         | 6835.9       |
@@ -325,7 +338,7 @@ The Xeon processor can't be more energy efficient than the ARM A9 processor for 
 
 | MinorCPU 2GHz 470.lbm    | Score        |
 | ------------------------ |--------------|
-| Default                  | 150.09       |
+| Default                  | 614.01       |
 | L1D: 128kB 2-way         | 826.02       |
 | L1D: 128kB 4-way         | 744.22       |
 | L2: 512kB 1-way          | 362.45       |
@@ -337,6 +350,9 @@ The Xeon processor can't be more energy efficient than the ARM A9 processor for 
 | L2: 4MB 8-way            | 801.80       |
 | Cache Line Size: 128B    | 1301.2       |
 | Cache Line Size: 256B    | 2961.89      |
+
+#### Lab Assignment Review (in greek)
+
 
 ### Sources
 * https://www.eetimes.com/a-methodology-for-minimizing-leakage-current/
