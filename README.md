@@ -1,5 +1,11 @@
-# Computer_Architecture_Lab
-Lab results for "Computer Architecture" AUTh course by students Eleftheriadis Charalampos (9257) and Chamou Eleni (9065)
+# ece-auth-computer-architecture-lab
+School of Electrical and Computer Engineering, Aristotle University of Thessaloniki
+
+These are the lab results for the course "Computer Architecture" for the 2019-2020 academic year.
+
+Students:
+- Chamou Eleni (9065)
+- Eleftheriadis Charalampos (9257)
 
 ## 1st Lab
 
