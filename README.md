@@ -3,7 +3,7 @@ School of Electrical and Computer Engineering, Aristotle University of Thessalon
 
 These are the lab results for the course "Computer Architecture" for the 2019-2020 academic year.
 
-Students:
+### Students:
 - Chamou Eleni (9065)
 - Eleftheriadis Charalampos (9257)
 
